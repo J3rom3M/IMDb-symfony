@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiste index{% endblock %}
+
+{% block body %}
+    <h1>Artiste index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Birthdate</th>
+                <th>ImageName</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artiste in artistes %}
+            <tr>
+                <td>{{ artiste.id }}</td>
+                <td>{{ artiste.lastname | upper }}</td>
+                <td>{{ artiste.firstname }}</td>
+                <td>{{ artiste.birthdate ? artiste.birthdate|date('Y-m-d') : '' }}</td>
+                <td><img src="{{ asset('images/artistes/' ~ artiste.imageName) | imagine_filter('my_thumb') }}"></td>
+                <td>{{ artiste.updatedAt ? artiste.updatedAt|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_artiste_show', {'id': artiste.id}) }}">show</a>
+                    <a href="{{ path('app_artiste_edit', {'id': artiste.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary"  href="{{ path('app_artiste_new') }}">Créer un nouvel artiste</a>
+{% endblock %}
