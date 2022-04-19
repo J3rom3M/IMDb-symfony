@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Home</h1>
+
+    <h2 class="py-5">Nos artistes</h2>
+
+{#    {{ dump(artistes) }}#}
+
+    <div class="d-flex flex-wrap justify-content-around">
+        {% for artiste in artistes %}
+
+            <div>
+                <img src="{{ asset('images/artistes/' ~ artiste.imageName) | imagine_filter('poster') }}">
+                <p>{{ artiste.firstname }} {{ artiste.lastname | upper }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -27,8 +27,8 @@
                 <td><img src="{{ asset('images/movies/' ~ movie.imageName) | imagine_filter('my_thumb') }}"></td>
                 <td>{{ movie.updatedAt ? movie.updatedAt|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_movie_show', {'id': movie.id}) }}">show</a>
-                    <a href="{{ path('app_movie_edit', {'id': movie.id}) }}">edit</a>
+                    <a class="btn btn-primary mt-3" href="{{ path('app_movie_show', {'id': movie.id}) }}">Afficher</a>
+                    <a class="btn btn-primary mt-3" href="{{ path('app_movie_edit', {'id': movie.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +39,5 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('app_movie_new') }}">Ajouter un film</a>
+    <a class="btn btn-primary ml-2" href="{{ path('app_movie_new') }}">Ajouter un film</a>
 {% endblock %}
